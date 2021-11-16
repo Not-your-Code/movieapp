@@ -1,14 +1,7 @@
 
 
-{"homepage" : "https://Not-your-Code.github.io/movieapp",
-  "name": "name",
-  "description": "description",
-  "authors": "author",
-  "version": "1.0.0",
-  "main": "pathToMain",
-  "dependencies": {}
-}
 {
+  "homepage" : "https://Not-your-Code.github.io/movieapp",
   "name": "react-rmdb",
   "version": "0.1.0",
   "private": true,
