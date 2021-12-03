@@ -10,6 +10,9 @@ import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config'
 import HeroImage from './HeroImg'
 import Grid from './Grid'
 import Thumb from './Thumb'
+import Spinner  from './spinner'
+import SearchBar from './SearchBar'
+import Button from './Button'
 //hook
 import { useHomeFetch } from '../hooks/useHomeFetch'
 
@@ -19,9 +22,12 @@ import NoImage from '../images/no_image.jpg'
 
 const Home = () => {
 
-  const { state, loading, error } = useHomeFetch()
+  const { state, loading, error ,searchTerm , setSearchTerm  , setIsLoadingMore} = useHomeFetch()
 
   console.log(state)
+
+  if(error) return <div>Something went Wrong..</div>
+
   return (
     <>
 
@@ -33,7 +39,8 @@ const Home = () => {
 
         /> : null
       }
-      <Grid header='Popular Movies'>
+      <SearchBar setSearchTerm={setSearchTerm}/>
+      <Grid header={searchTerm?'Search Results':'Popular Movies'}>
         {state.results.map(movie => (
 
           <Thumb 
@@ -50,6 +57,10 @@ const Home = () => {
 
         ))}
       </Grid>
+     {  loading && <Spinner />}
+      {state.page < state.total_pages && !loading &&(
+        <Button text='Load More' callback={()=>setIsLoadingMore(true)}/>
+      )}
 
     </>
   )

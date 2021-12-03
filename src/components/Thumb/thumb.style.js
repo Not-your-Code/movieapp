@@ -10,6 +10,7 @@ animation: anime 0.4s;
 
 :hover{
     opacity: 0.7;
+    cursor: pointer;
 }
 
 @keyframes anime {
